@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 
 import { intentBgColors, intentColors, intentIcons } from "./constants";
@@ -84,7 +84,14 @@ export function Toast({
           <Title>{title}</Title>
           <Message>{message}</Message>
         </Content>
-        <StyledClose />
+        <div
+          onClick={() => setShowToast(false)}
+          onKeyDown={() => setShowToast(false)}
+          role="button"
+          tabIndex={0}
+        >
+          <StyledClose />
+        </div>
       </Container>
     </Wrapper>
   );
