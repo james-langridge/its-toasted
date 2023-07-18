@@ -10,10 +10,10 @@ const Container = styled.div<ContainerProps>`
   border-radius: 6px;
   color: ${(props) => intentColors[props.intent]};
   display: flex;
-  width: 100%;
+  max-width: 550px;
   padding: 12px;
   position: relative;
-  max-width: 550px;
+  width: 100%;
 `;
 
 const Content = styled.div`
@@ -26,8 +26,8 @@ const Message = styled.div``;
 
 const StyledClose = styled(Close)`
   position: absolute;
-  top: 10px;
   right: 10px;
+  top: 10px;
 `;
 
 const Title = styled.div`

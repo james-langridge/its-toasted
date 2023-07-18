@@ -1,33 +1,9 @@
 import { useState } from "react";
 import { createRoot } from "react-dom/client";
-import styled, { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 
 import { Toast } from "./components/toast";
-
-const GlobalStyle = createGlobalStyle`
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: #f3f3f3;
-    color: #333;
-  }
-
-  html,
-  body {
-    max-width: 100vw;
-  }
-`;
+import "./styles/globals.css";
 
 const Container = styled.div`
   align-items: center;
@@ -47,7 +23,6 @@ const App = () => {
 
   return (
     <Container>
-      <GlobalStyle />
       <Button onClick={() => setShowToast(!showToast)}>Click me</Button>
       {showToast && <Toast intent="Danger" message="This is a toast." />}
     </Container>
