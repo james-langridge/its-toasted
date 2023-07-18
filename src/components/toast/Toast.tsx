@@ -10,10 +10,14 @@ const Container = styled.div<ContainerProps>`
   border-radius: 6px;
   color: ${(props) => intentColors[props.intent]};
   display: flex;
-  max-width: 550px;
+  min-width: 550px;
   padding: 12px;
   position: relative;
   width: 100%;
+
+  @media (max-width: 768px) {
+    min-width: 300px;
+  }
 `;
 
 const Content = styled.div`
