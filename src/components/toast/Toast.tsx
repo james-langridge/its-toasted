@@ -22,7 +22,11 @@ const Content = styled.div`
   margin-left: 20px;
 `;
 
-const Message = styled.div``;
+const Message = styled.div`
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+`;
 
 const StyledClose = styled(Close)`
   position: absolute;
@@ -31,8 +35,9 @@ const StyledClose = styled(Close)`
 `;
 
 const Title = styled.div`
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
 `;
 
 export function Toast({
