@@ -24,7 +24,12 @@ const App = () => {
   return (
     <Container>
       <Button onClick={() => setShowToast(!showToast)}>Click me</Button>
-      {showToast && <Toast intent="Danger" message="This is a toast." />}
+      <Toast
+        intent="Danger"
+        message="This is a toast."
+        setShowToast={setShowToast}
+        showToast={showToast}
+      />
     </Container>
   );
 };

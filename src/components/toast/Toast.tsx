@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { intentBgColors, intentColors, intentIcons } from "./constants";
@@ -50,12 +51,30 @@ const Wrapper = styled.div`
 `;
 
 export function Toast({
-  autoCloseDuration = 6,
+  autoCloseDuration = 6000,
   intent,
   message,
+  setShowToast,
+  showToast,
   title = intent,
 }: ToastProps) {
   const Icon = intentIcons[intent];
+
+  useEffect(() => {
+    if (!showToast) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setShowToast(false);
+    }, autoCloseDuration);
+
+    return () => clearTimeout(timer);
+  }, [autoCloseDuration, setShowToast, showToast]);
+
+  if (!showToast) {
+    return null;
+  }
 
   return (
     <Wrapper>
