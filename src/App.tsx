@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { createRoot } from "react-dom/client";
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 import { Toast } from "./components/toast";
 
@@ -28,12 +29,28 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const Container = styled.div`
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+`;
+
+const Button = styled.button`
+  height: 25px;
+  width: 75px;
+`;
+
 const App = () => {
+  const [showToast, setShowToast] = useState(false);
+
   return (
-    <>
+    <Container>
       <GlobalStyle />
-      <Toast intent="Danger" message="This is a toast." />
-    </>
+      <Button onClick={() => setShowToast(!showToast)}>Click me</Button>
+      {showToast && <Toast intent="Danger" message="This is a toast." />}
+    </Container>
   );
 };
 
