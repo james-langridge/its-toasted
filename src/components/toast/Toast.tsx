@@ -40,6 +40,11 @@ const Title = styled.div`
   line-height: 20px;
 `;
 
+const Wrapper = styled.div`
+  bottom: 10px;
+  position: fixed;
+`;
+
 export function Toast({
   autoCloseDuration = 6,
   intent,
@@ -49,13 +54,15 @@ export function Toast({
   const Icon = intentIcons[intent];
 
   return (
-    <Container intent={intent}>
-      <Icon />
-      <Content>
-        <Title>{title}</Title>
-        <Message>{message}</Message>
-      </Content>
-      <StyledClose />
-    </Container>
+    <Wrapper>
+      <Container intent={intent}>
+        <Icon />
+        <Content>
+          <Title>{title}</Title>
+          <Message>{message}</Message>
+        </Content>
+        <StyledClose />
+      </Container>
+    </Wrapper>
   );
 }
