@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import styled from "styled-components";
 
 import { intentBgColors, intentColors, intentIcons } from "./constants";
 import { Close } from "./icons";
+import { useToastsDispatch } from "./ToastsContext";
 import { ContainerProps, ToastProps } from "./types";
 
 const Container = styled.div<ContainerProps>`
@@ -11,13 +12,14 @@ const Container = styled.div<ContainerProps>`
   border-radius: 6px;
   color: ${(props) => intentColors[props.intent]};
   display: flex;
-  min-width: 550px;
+  margin-bottom: 10px;
+  max-width: 550px;
   padding: 12px;
   position: relative;
   width: 100%;
 
   @media (max-width: 768px) {
-    min-width: 300px;
+    max-width: 300px;
   }
 `;
 
@@ -25,6 +27,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 20px;
+  margin-right: 20px;
 `;
 
 const Message = styled.div`
@@ -45,54 +48,41 @@ const Title = styled.div`
   line-height: 20px;
 `;
 
-const Wrapper = styled.div`
-  bottom: 10px;
-  position: fixed;
-`;
-
 export function Toast({
   autoCloseDuration = 6000,
-  intent,
-  message,
-  setShowToast,
-  showToast,
-  title = intent,
+  toast,
+  title = toast.intent,
 }: ToastProps) {
-  const Icon = intentIcons[intent];
+  const dispatch = useToastsDispatch();
+  const Icon = intentIcons[toast.intent];
+
+  const deleteToast = useCallback(() => {
+    dispatch({ type: "deleted", id: toast.id });
+  }, [dispatch, toast.id]);
 
   useEffect(() => {
-    if (!showToast) {
-      return;
-    }
-
     const timer = setTimeout(() => {
-      setShowToast(false);
+      deleteToast();
     }, autoCloseDuration);
 
     return () => clearTimeout(timer);
-  }, [autoCloseDuration, setShowToast, showToast]);
-
-  if (!showToast) {
-    return null;
-  }
+  }, [autoCloseDuration, deleteToast]);
 
   return (
-    <Wrapper>
-      <Container intent={intent}>
-        <Icon />
-        <Content>
-          <Title>{title}</Title>
-          <Message>{message}</Message>
-        </Content>
-        <div
-          onClick={() => setShowToast(false)}
-          onKeyDown={() => setShowToast(false)}
-          role="button"
-          tabIndex={0}
-        >
-          <StyledClose />
-        </div>
-      </Container>
-    </Wrapper>
+    <Container intent={toast.intent}>
+      <Icon />
+      <Content>
+        <Title>{title}</Title>
+        <Message>{toast.message}</Message>
+      </Content>
+      <div
+        onClick={deleteToast}
+        onKeyDown={deleteToast}
+        role="button"
+        tabIndex={0}
+      >
+        <StyledClose />
+      </div>
+    </Container>
   );
 }
