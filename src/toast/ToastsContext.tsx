@@ -42,7 +42,7 @@ type ToastsState = Toast[];
 function toastsReducer(toasts: ToastsState, action: ToastsAction): ToastsState {
   switch (action.type) {
     case "added": {
-      return [...toasts, action.toast];
+      return [action.toast, ...toasts];
     }
     case "deleted": {
       return toasts.filter((t) => t.id !== action.id);
