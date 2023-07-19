@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { intentBgColors, intentColors, intentIcons } from "./constants";
 import { Close } from "./icons";
+import { limitStringLength } from "./lib";
 import { useToastsDispatch } from "./ToastsContext";
 import { ContainerProps, ToastProps } from "./types";
 
@@ -70,7 +71,7 @@ export function Toast({
     <Container intent={intent}>
       <Icon />
       <Content>
-        <Title>{title}</Title>
+        <Title>{limitStringLength(title)}</Title>
         <Message>{message}</Message>
       </Content>
       <div
