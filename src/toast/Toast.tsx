@@ -49,16 +49,14 @@ const Title = styled.div`
 `;
 
 export function Toast({
-  autoCloseDuration = 6000,
-  toast,
-  title = toast.intent,
+  toast: { id, intent, autoCloseDuration = 6000, title = intent, message },
 }: ToastProps) {
   const dispatch = useToastsDispatch();
-  const Icon = intentIcons[toast.intent];
+  const Icon = intentIcons[intent];
 
   const deleteToast = useCallback(() => {
-    dispatch({ type: "deleted", id: toast.id });
-  }, [dispatch, toast.id]);
+    dispatch({ type: "deleted", id });
+  }, [dispatch, id]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -69,11 +67,11 @@ export function Toast({
   }, [autoCloseDuration, deleteToast]);
 
   return (
-    <Container intent={toast.intent}>
+    <Container intent={intent}>
       <Icon />
       <Content>
         <Title>{title}</Title>
-        <Message>{toast.message}</Message>
+        <Message>{message}</Message>
       </Content>
       <div
         onClick={deleteToast}

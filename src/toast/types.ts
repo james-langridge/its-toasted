@@ -1,14 +1,31 @@
-import { Toast } from "./ToastsContext";
-
-export type Intent = "Danger" | "Success" | "Warning";
+type AddedAction = {
+  toast: Toast;
+  type: "added";
+};
 
 export interface ContainerProps {
   intent: Intent;
 }
 
-export type ToastProps = {
+type DeletedAction = {
+  id: string;
+  type: "deleted";
+};
+
+export type Intent = "Danger" | "Success" | "Warning";
+
+export type Toast = {
   autoCloseDuration?: number;
-  key: string;
+  id: string;
+  intent: Intent;
+  message: string;
   title?: string;
+};
+
+export type ToastProps = {
   toast: Toast;
 };
+
+export type ToastsAction = AddedAction | DeletedAction;
+
+export type ToastsState = Toast[];

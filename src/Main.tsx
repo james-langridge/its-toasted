@@ -1,9 +1,7 @@
 import styled from "styled-components";
-import { v4 as uuidv4 } from "uuid";
 
-import { generateToast } from "./lib";
-import { ToastContainer } from "./toast";
-import { useToastsDispatch } from "./toast/ToastsContext";
+import { useToastsDispatch } from "./toast";
+import { generateToast } from "./toast/lib";
 
 const AppContainer = styled.div`
   align-items: flex-start;
@@ -33,21 +31,12 @@ export function Main() {
 
   function addToast() {
     const toast = generateToast();
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
-    const id: string = uuidv4();
-
-    dispatch({
-      toast: { ...toast, id },
-      type: "added",
-    });
+    dispatch({ toast, type: "added" });
   }
 
   return (
-    <>
-      <ToastContainer />
-      <AppContainer>
-        <Button onClick={addToast}>Click Me</Button>
-      </AppContainer>
-    </>
+    <AppContainer>
+      <Button onClick={addToast}>Click Me</Button>
+    </AppContainer>
   );
 }
