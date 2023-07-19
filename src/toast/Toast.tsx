@@ -50,7 +50,7 @@ const Title = styled.div`
 `;
 
 export function Toast({
-  toast: { id, intent, autoCloseDuration = 6000, title = intent, message },
+  toast: { autoCloseDuration, id, intent, message, title },
 }: ToastProps) {
   const dispatch = useToastsDispatch();
   const Icon = intentIcons[intent];

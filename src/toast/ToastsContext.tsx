@@ -1,8 +1,15 @@
 import React, { createContext, Dispatch, useContext, useReducer } from "react";
 import styled from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 
 import { Toast } from "./Toast";
-import { ToastsAction, ToastsState } from "./types";
+import {
+  AddToast,
+  AddToastProps,
+  ToastProps,
+  ToastsAction,
+  ToastsState,
+} from "./types";
 
 const ToastsContext = createContext<ToastsState>([] as ToastsState);
 const ToastsDispatchContext = createContext<Dispatch<ToastsAction>>(
@@ -48,6 +55,25 @@ export function useToasts() {
 
 export function useToastsDispatch() {
   return useContext(ToastsDispatchContext);
+}
+
+export function useAddToast() {
+  const dispatch = useContext(ToastsDispatchContext);
+
+  return function addToast({
+    toast: { autoCloseDuration = 6000, intent, message, title = intent },
+  }: AddToastProps) {
+    dispatch({
+      toast: {
+        autoCloseDuration,
+        id: uuidv4(),
+        intent,
+        message,
+        title,
+      },
+      type: "added",
+    });
+  };
 }
 
 function toastsReducer(toasts: ToastsState, action: ToastsAction): ToastsState {

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { useToastsDispatch } from "./toast";
+import { useAddToast } from "./toast";
 import { generateToast } from "./toast/lib";
 
 const AppContainer = styled.div`
@@ -27,16 +27,13 @@ const Button = styled.button`
 `;
 
 export function Main() {
-  const dispatch = useToastsDispatch();
-
-  function addToast() {
-    const toast = generateToast();
-    dispatch({ toast, type: "added" });
-  }
+  const addToast = useAddToast();
 
   return (
     <AppContainer>
-      <Button onClick={addToast}>Click Me</Button>
+      <Button onClick={() => addToast({ toast: generateToast() })}>
+        Click Me
+      </Button>
     </AppContainer>
   );
 }
