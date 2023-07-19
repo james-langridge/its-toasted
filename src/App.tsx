@@ -2,7 +2,7 @@ import { createRoot } from "react-dom/client";
 
 import "./styles/globals.css";
 import { Main } from "./Main";
-import { ToastsProvider } from "./toast";
+import { ToastsProvider } from "../toast";
 
 const App = () => {
   return (

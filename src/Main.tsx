@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { useAddToast } from "./toast";
-import { generateToast } from "./toast/lib";
+import { useAddToast } from "../toast";
+import { generateToast } from "../toast/lib";
 
 const AppContainer = styled.div`
   align-items: flex-start;

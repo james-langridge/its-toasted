@@ -1,0 +1,16 @@
+{
+  "name": "toast-notification",
+  "version": "0.1.0",
+  "main": "index.ts",
+  "author": "James Langridge <l@ngridge.com> (https://github.com/james-langridge)",
+  "keywords": [],
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "styled-components": "^6.0.4",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.2"
+  }
+}

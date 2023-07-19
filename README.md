@@ -4,10 +4,30 @@
 
 [View demo](https://gilded-pasca-cbbf5b.netlify.app/).
 
+## Installation
+
+Create a `/packages` directory in your project.
+
+Copy the `/toast` directory into your `/packages` directory.
+
+In your root `package.json`, add the path to your `/packages` directory:
+
+```json
+{
+  "private": true,
+  "workspaces": [
+    "packages/**"
+  ]
+}
+```
+
+Run `npm i` in your root directory to install the dependencies.
+
 ## Usage
 
 ```jsx
-import { ToastsProvider, useAddToast } from "./toast";
+// You can import like this if you installed it as a package as explained above.
+import { ToastsProvider, useAddToast } from "toast-notification";
 
 function App() {
     return (

@@ -1,8 +1,8 @@
 {
   "name": "toast-notification",
   "version": "0.1.0",
-  "main": "index.js",
-  "author": "James Langridge <jamesl@ngridge.com> (https://github.com/james-langridge)",
+  "main": "index.ts",
+  "author": "James Langridge <l@ngridge.com> (https://github.com/james-langridge)",
   "keywords": [],
   "license": "MIT",
   "type": "module",

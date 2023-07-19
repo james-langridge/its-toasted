@@ -3,13 +3,7 @@ import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 
 import { Toast } from "./Toast";
-import {
-  AddToast,
-  AddToastProps,
-  ToastProps,
-  ToastsAction,
-  ToastsState,
-} from "./types";
+import { AddToastProps, ToastsAction, ToastsState } from "./types";
 
 const ToastsContext = createContext<ToastsState>([] as ToastsState);
 const ToastsDispatchContext = createContext<Dispatch<ToastsAction>>(
@@ -49,7 +43,7 @@ function Toasts() {
   );
 }
 
-export function useToasts() {
+function useToasts() {
   return useContext(ToastsContext);
 }
 
