@@ -4,9 +4,24 @@ type AddedAction = {
 };
 
 export type AddToast = {
+  /**
+   * The duration to display the toast in milliseconds.  Defaults to 6000.
+   */
   autoCloseDuration?: number;
+
+  /**
+   * The style of the toast.  Chose between "Danger", "Success", and "Warning".
+   */
   intent: Intent;
+
+  /**
+   * The message to display in the toast.
+   */
   message: string;
+
+  /**
+   * The title to display on the toast.  This is limited to 50 characters.
+   */
   title?: string;
 };
 
